@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LibraryWPF"
         mc:Ignorable="d"
-        Title="StudentPanel" Height="600" Width="900" Background="White" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+        Title="StudentPanel" Height="600" Width="900" Background="White" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Icon="Icons/task.png">
     <Grid>
         <Grid HorizontalAlignment="Left" Height="571" VerticalAlignment="Top" Width="126">
 

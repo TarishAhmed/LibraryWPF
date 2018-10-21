@@ -72,13 +72,28 @@ namespace LibraryWPF
             StudentAnswer studentAnswer = new StudentAnswer();
             Question question = new Question();
             //var sc = Qsds.Where(!(c => c.PostDate>=DateTime.Now));
-            var sc = from s in dbq.Questions
-                     where !dbq.StudentAnswers.Any(es=>(es.Qno==s.Qno)) && (s.PostDate>DateTime.Now)
-                     select s;
-            foreach(var i in sc)
+            var sc = from Questions in dbq.Questions
+                     where
+                           (from StudentAnswers in dbq.StudentAnswers
+                            where
+                            Questions.Qno == StudentAnswers.Qno &&
+                            StudentAnswers.Roll_No == Roll
+                            select new
+                            {
+                                StudentAnswers.Qno
+                            }).FirstOrDefault().Qno == null &&
+                       Questions.PostDate > DateTime.Now
+                     select new
+                     {
+                         Questions.Qno,
+                         Questions.PostDate
+                     };
+
+
+            foreach (var i in sc)
             {
 
-                qnolist.ItemsSource = sc.Select(s=>s.Qno);
+                qnolist.Items.Add(i.Qno.ToString());
             }
             
         }

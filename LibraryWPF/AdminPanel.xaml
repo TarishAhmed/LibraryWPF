@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LibraryWPF"
         mc:Ignorable="d"
-        Title="AdminPanel" Height="600" Width="900" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+        Title="AdminPanel" Height="600" Width="900" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Icon="Icons/task.png">
     <Grid>
         <Grid HorizontalAlignment="Left" Height="571" VerticalAlignment="Top" Width="126">
             <Button x:Name="postq" Content="Post Question" HorizontalAlignment="Left" Margin="1,111,0,0" VerticalAlignment="Top" Width="125" Height="46" Background="#4CDDDDDD" BorderBrush="{x:Null}" Foreground="#FF5F5757" Padding="1,1,-25,1" Click="postq_Click"/>
