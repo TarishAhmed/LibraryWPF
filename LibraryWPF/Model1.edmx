@@ -1,0 +1,260 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="WPFLibDatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AdminLogin">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="AdminID" Type="nvarchar" MaxLength="50" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Question">
+          <Key>
+            <PropertyRef Name="Qno" />
+          </Key>
+          <Property Name="Qno" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Question" Type="nvarchar" MaxLength="300" />
+          <Property Name="Mark_Available" Type="numeric" Precision="3" Scale="1" />
+          <Property Name="Picture" Type="image" />
+          <Property Name="PostDate" Type="datetime2" Precision="7" />
+        </EntityType>
+        <EntityType Name="StudentAnswer">
+          <Key>
+            <PropertyRef Name="SAno" />
+          </Key>
+          <Property Name="SAno" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Roll_No" Type="nvarchar" MaxLength="50" />
+          <Property Name="Answer" Type="nvarchar" MaxLength="500" />
+          <Property Name="Qno" Type="int" />
+          <Property Name="Mark_Obtained" Type="numeric" Precision="3" Scale="1" />
+        </EntityType>
+        <EntityType Name="StudentLogin">
+          <Key>
+            <PropertyRef Name="Roll_No" />
+          </Key>
+          <Property Name="Roll_No" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Gender" Type="nvarchar" MaxLength="10" />
+          <Property Name="Total_Mark" Type="numeric" Precision="4" Scale="2" />
+        </EntityType>
+        <EntityType Name="Table">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_StudentAnswer_Question">
+          <End Role="Question" Type="Self.Question" Multiplicity="0..1" />
+          <End Role="StudentAnswer" Type="Self.StudentAnswer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Question">
+              <PropertyRef Name="Qno" />
+            </Principal>
+            <Dependent Role="StudentAnswer">
+              <PropertyRef Name="Qno" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StudentAnswer_StudentLogin">
+          <End Role="StudentLogin" Type="Self.StudentLogin" Multiplicity="0..1" />
+          <End Role="StudentAnswer" Type="Self.StudentAnswer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StudentLogin">
+              <PropertyRef Name="Roll_No" />
+            </Principal>
+            <Dependent Role="StudentAnswer">
+              <PropertyRef Name="Roll_No" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="WPFLibDatabaseModelStoreContainer">
+          <EntitySet Name="AdminLogin" EntityType="Self.AdminLogin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Question" EntityType="Self.Question" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StudentAnswer" EntityType="Self.StudentAnswer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StudentLogin" EntityType="Self.StudentLogin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Table" EntityType="Self.Table" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_StudentAnswer_Question" Association="Self.FK_StudentAnswer_Question">
+            <End Role="Question" EntitySet="Question" />
+            <End Role="StudentAnswer" EntitySet="StudentAnswer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StudentAnswer_StudentLogin" Association="Self.FK_StudentAnswer_StudentLogin">
+            <End Role="StudentLogin" EntitySet="StudentLogin" />
+            <End Role="StudentAnswer" EntitySet="StudentAnswer" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="WPFLibDatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AdminLogin">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="AdminID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityContainer Name="WPFLibDatabaseEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AdminLogins" EntityType="Self.AdminLogin" />
+          <EntitySet Name="Questions" EntityType="WPFLibDatabaseModel.Question" />
+          <EntitySet Name="StudentAnswers" EntityType="WPFLibDatabaseModel.StudentAnswer" />
+          <AssociationSet Name="FK_StudentAnswer_Question" Association="WPFLibDatabaseModel.FK_StudentAnswer_Question">
+            <End Role="Question" EntitySet="Questions" />
+            <End Role="StudentAnswer" EntitySet="StudentAnswers" />
+          </AssociationSet>
+          <EntitySet Name="StudentModelLogins" EntityType="WPFLibDatabaseModel.StudentModelLogin" />
+          <AssociationSet Name="FK_StudentAnswer_StudentLogin" Association="WPFLibDatabaseModel.FK_StudentAnswer_StudentLogin">
+            <End Role="StudentLogin" EntitySet="StudentModelLogins" />
+            <End Role="StudentAnswer" EntitySet="StudentAnswers" />
+          </AssociationSet>
+          <EntitySet Name="Tables" EntityType="WPFLibDatabaseModel.Table" />
+        </EntityContainer>
+        <EntityType Name="Question">
+          <Key>
+            <PropertyRef Name="Qno" />
+          </Key>
+          <Property Name="Qno" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Question1" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="Mark_Available" Type="Decimal" Precision="3" Scale="1" />
+          <Property Name="Picture" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="PostDate" Type="DateTime" Precision="7" />
+          <NavigationProperty Name="StudentAnswers" Relationship="WPFLibDatabaseModel.FK_StudentAnswer_Question" FromRole="Question" ToRole="StudentAnswer" />
+        </EntityType>
+        <EntityType Name="StudentAnswer">
+          <Key>
+            <PropertyRef Name="SAno" />
+          </Key>
+          <Property Name="SAno" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Roll_No" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Answer" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Qno" Type="Int32" />
+          <Property Name="Mark_Obtained" Type="Decimal" Precision="3" Scale="1" />
+          <NavigationProperty Name="Question" Relationship="WPFLibDatabaseModel.FK_StudentAnswer_Question" FromRole="StudentAnswer" ToRole="Question" />
+          <NavigationProperty Name="StudentLogin" Relationship="WPFLibDatabaseModel.FK_StudentAnswer_StudentLogin" FromRole="StudentAnswer" ToRole="StudentLogin" />
+        </EntityType>
+        <Association Name="FK_StudentAnswer_Question">
+          <End Type="WPFLibDatabaseModel.Question" Role="Question" Multiplicity="0..1" />
+          <End Type="WPFLibDatabaseModel.StudentAnswer" Role="StudentAnswer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Question">
+              <PropertyRef Name="Qno" />
+            </Principal>
+            <Dependent Role="StudentAnswer">
+              <PropertyRef Name="Qno" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="StudentModelLogin">
+          <Key>
+            <PropertyRef Name="Roll_No" />
+          </Key>
+          <Property Name="Roll_No" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Gender" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Total_Mark" Type="Decimal" Precision="4" Scale="2" />
+          <NavigationProperty Name="StudentAnswers" Relationship="WPFLibDatabaseModel.FK_StudentAnswer_StudentLogin" FromRole="StudentLogin" ToRole="StudentAnswer" />
+        </EntityType>
+        <Association Name="FK_StudentAnswer_StudentLogin">
+          <End Type="WPFLibDatabaseModel.StudentModelLogin" Role="StudentLogin" Multiplicity="0..1" />
+          <End Type="WPFLibDatabaseModel.StudentAnswer" Role="StudentAnswer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StudentLogin">
+              <PropertyRef Name="Roll_No" />
+            </Principal>
+            <Dependent Role="StudentAnswer">
+              <PropertyRef Name="Roll_No" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Table">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="WPFLibDatabaseModelStoreContainer" CdmEntityContainer="WPFLibDatabaseEntities">
+          <EntitySetMapping Name="AdminLogins">
+            <EntityTypeMapping TypeName="WPFLibDatabaseModel.AdminLogin">
+              <MappingFragment StoreEntitySet="AdminLogin">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="AdminID" ColumnName="AdminID" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Questions">
+            <EntityTypeMapping TypeName="WPFLibDatabaseModel.Question">
+              <MappingFragment StoreEntitySet="Question">
+                <ScalarProperty Name="PostDate" ColumnName="PostDate" />
+                <ScalarProperty Name="Picture" ColumnName="Picture" />
+                <ScalarProperty Name="Mark_Available" ColumnName="Mark_Available" />
+                <ScalarProperty Name="Question1" ColumnName="Question" />
+                <ScalarProperty Name="Qno" ColumnName="Qno" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StudentAnswers">
+            <EntityTypeMapping TypeName="WPFLibDatabaseModel.StudentAnswer">
+              <MappingFragment StoreEntitySet="StudentAnswer">
+                <ScalarProperty Name="Mark_Obtained" ColumnName="Mark_Obtained" />
+                <ScalarProperty Name="Qno" ColumnName="Qno" />
+                <ScalarProperty Name="Answer" ColumnName="Answer" />
+                <ScalarProperty Name="Roll_No" ColumnName="Roll_No" />
+                <ScalarProperty Name="SAno" ColumnName="SAno" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StudentModelLogins">
+            <EntityTypeMapping TypeName="WPFLibDatabaseModel.StudentModelLogin">
+              <MappingFragment StoreEntitySet="StudentLogin">
+                <ScalarProperty Name="Total_Mark" ColumnName="Total_Mark" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Roll_No" ColumnName="Roll_No" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tables">
+            <EntityTypeMapping TypeName="WPFLibDatabaseModel.Table">
+              <MappingFragment StoreEntitySet="Table">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

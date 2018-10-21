@@ -1,0 +1,29 @@
+﻿<Page x:Class="LibraryWPF.Correction"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:LibraryWPF"
+      mc:Ignorable="d" 
+      d:DesignHeight="571" d:DesignWidth="758"
+      Title="Correction">
+
+    <Grid>
+        <ListBox HorizontalAlignment="Left" Height="100" Margin="104,158,0,0" VerticalAlignment="Top" Width="100"/>
+        <ListBox HorizontalAlignment="Left" Height="100" Margin="278,158,0,0" VerticalAlignment="Top" Width="141"/>
+        <TextBox HorizontalAlignment="Left" Height="100" Margin="500,158,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="229" BorderBrush="#FF1CDECD"/>
+        <TextBox HorizontalAlignment="Left" Height="114" Margin="500,346,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="229" BorderBrush="#FF1CDECD" TextChanged="TextBox_TextChanged"/>
+        <Image HorizontalAlignment="Left" Height="114" Margin="104,346,0,0" VerticalAlignment="Top" Width="186"/>
+        <TextBlock HorizontalAlignment="Left" Margin="104,303,0,0" TextWrapping="Wrap" Text="Picture Clue" VerticalAlignment="Top" FontSize="16" Foreground="#FF48D31F"/>
+        <TextBlock HorizontalAlignment="Left" Margin="290,346,0,0" TextWrapping="Wrap" Text="Mark Allotted" VerticalAlignment="Top" Foreground="#FF2FDE6F" FontSize="14"/>
+        <TextBlock HorizontalAlignment="Left" Margin="402,346,0,0" TextWrapping="Wrap" Text="Mark Scored" VerticalAlignment="Top" Foreground="#FFF06E15" FontSize="14"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="295,381,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="79"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="402,381,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="78"/>
+        <Button x:Name="submitcorrectionbtn" Content="SUBMIT" HorizontalAlignment="Left" Margin="337,433,0,0" VerticalAlignment="Top" Width="82" Height="27" Click="submitcorrectionbtn_Click"/>
+        <TextBlock HorizontalAlignment="Left" Margin="104,121,0,0" TextWrapping="Wrap" Text="Roll No." VerticalAlignment="Top" FontSize="16" Foreground="#FF48D31F"/>
+        <TextBlock HorizontalAlignment="Left" Margin="278,121,0,0" TextWrapping="Wrap" Text="Question No." VerticalAlignment="Top" FontSize="16" Foreground="#FF48D31F"/>
+        <TextBlock HorizontalAlignment="Left" Margin="500,121,0,0" TextWrapping="Wrap" Text="Question" VerticalAlignment="Top" FontSize="16" Foreground="#FF48D31F"/>
+        <TextBlock HorizontalAlignment="Left" Margin="500,303,0,0" TextWrapping="Wrap" Text="Answer" VerticalAlignment="Top" FontSize="16" Foreground="#FF48D31F"/>
+
+    </Grid>
+</Page>

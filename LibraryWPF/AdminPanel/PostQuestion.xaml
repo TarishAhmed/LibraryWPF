@@ -1,0 +1,24 @@
+﻿<Page x:Class="LibraryWPF.PostQuestion"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:sys="clr-namespace:System;assembly=mscorlib"
+      xmlns:local="clr-namespace:LibraryWPF"
+      mc:Ignorable="d" 
+      d:DesignHeight="571" d:DesignWidth="758"
+      Title="PostQuestion">
+
+    <Grid>
+        <TextBlock HorizontalAlignment="Left" Margin="122,34,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="Question" FontSize="24" Foreground="#FF13DEB9"/>
+        <Button x:Name="picturebtn" Content="OPEN" HorizontalAlignment="Left" Margin="285,259,0,0" VerticalAlignment="Top" Width="75" Height="24" BorderBrush="#FF41E411" TabIndex="2" Click="picturebtn_Click"/>
+        <TextBlock HorizontalAlignment="Left" Margin="122,257,0,0" TextWrapping="Wrap" Text="Picture" VerticalAlignment="Top" FontSize="18" Foreground="#FF13DEB9"/>
+        <Image x:Name="MyImage" HorizontalAlignment="Left" Height="151" Margin="122,308,0,0" VerticalAlignment="Top" Width="238"  Stretch="UniformToFill"/>
+        <TextBlock HorizontalAlignment="Left" Margin="569,306,0,0" TextWrapping="Wrap" Text="Expires in" VerticalAlignment="Top" Foreground="#FF13DEB9" FontSize="16"/>
+        <DatePicker x:Name="expdt" SelectedDate="{x:Static sys:DateTime.Today}" DisplayDateStart="{x:Static sys:DateTime.Today}" HorizontalAlignment="Left" Margin="551,334,0,0" VerticalAlignment="Top" TabIndex="4"/>
+        <TextBlock HorizontalAlignment="Left" Margin="424,308,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="14" Foreground="#FF13DEB9"><Run Text="Mark Allotted"/></TextBlock>
+        <TextBox x:Name="mrkalottxt" HorizontalAlignment="Left" Height="23" Margin="441,335,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="54" TabIndex="3"/>
+        <Button x:Name="postbtn" Content="POST" HorizontalAlignment="Left" Margin="500,398,0,0" VerticalAlignment="Top" Width="88" Height="40" TabIndex="5" Click="postbtn_Click"/>
+        <TextBox x:Name="qstntxt" HorizontalAlignment="Left" Height="146" Margin="122,71,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="392" TabIndex="1"/>
+    </Grid>
+</Page>
