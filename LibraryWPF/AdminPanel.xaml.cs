@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
+
 namespace LibraryWPF
 {
     /// <summary>
@@ -54,6 +55,11 @@ namespace LibraryWPF
         private void quelist_Click(object sender, RoutedEventArgs e)
         {
             adminframe.Content = new Question_List();
+        }
+
+        private void Misc_Click(object sender, RoutedEventArgs e)
+        {
+            adminframe.Content = new Misc();
         }
     }
 }

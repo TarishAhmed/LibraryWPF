@@ -26,6 +26,7 @@ namespace LibraryWPF
         public StudentLogin()
         {
             InitializeComponent();
+            stud.Focus();
         }
 
         private void login_Click(object sender, RoutedEventArgs e)

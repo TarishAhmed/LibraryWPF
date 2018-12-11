@@ -8,7 +8,21 @@
       d:DesignHeight="571" d:DesignWidth="758"
       Title="Student_Answers">
 
+
     <Grid>
-        
+        <DataGrid x:Name="studentAnswerDataGrid" GridLinesVisibility="Horizontal" IsReadOnly="True" AutoGenerateColumns="False" Foreground="#FF0F3991" FontSize="16" FontFamily="/LibraryWPF;component/Fonts/#Roboto Medium" BorderThickness="0,0,0,1" HorizontalGridLinesBrush="#FF4A5D9C">
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="sAnoColumn" Binding="{Binding SAno}" Header="Sl. No"  Foreground="#FF0EA222" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="roll_NoColumn" Binding="{Binding Roll_No}" Header="Roll No"  Foreground="#FF0EA222" Width="200"/>
+                <DataGridTextColumn x:Name="answerColumn" Binding="{Binding Answer}" Header="Answer"  Foreground="#FF0EA222" Width="300"/>
+                <DataGridTextColumn x:Name="qnoColumn" Binding="{Binding Qno}" Header="Que.no"  Foreground="#FF0EA222" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="mark_ObtainedColumn" Binding="{Binding Mark_Obtained}"  Foreground="#FF0EA222" Header="Mark Obtained" Width="SizeToHeader"/>
+            </DataGrid.Columns>
+            <DataGrid.Resources>
+                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#380F3991"/>
+                <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightBrushKey}" Color="#00000000"/>
+            </DataGrid.Resources>
+        </DataGrid>
+
     </Grid>
 </Page>

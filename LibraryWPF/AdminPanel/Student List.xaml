@@ -9,6 +9,17 @@
       Title="Student_List">
 
     <Grid>
-        
+        <DataGrid GridLinesVisibility="Horizontal" IsReadOnly="True" x:Name="studgrid" AutoGenerateColumns="False" Foreground="#FF0F3991" FontSize="16" FontFamily="/LibraryWPF;component/Fonts/#Roboto Medium" BorderThickness="0,0,0,1" HorizontalGridLinesBrush="#FF4A5D9C">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Roll_No}" Width="200" Header="Roll Number" Foreground="#FF0EA222"/>
+                <DataGridTextColumn Binding="{Binding Name}" Width="250" Header="Name" Foreground="#FF0EA222" />
+                <DataGridTextColumn Binding="{Binding Gender}" Width="70" Header="Gender" Foreground="#FF0EA222" />
+                <DataGridTextColumn Binding="{Binding Total_Mark}" Width="100" Header="Total Mark" Foreground="#FF0EA222" />
+            </DataGrid.Columns>
+            <DataGrid.Resources>
+                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#380F3991"/>
+                <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightBrushKey}" Color="#00000000"/>
+            </DataGrid.Resources>
+        </DataGrid>
     </Grid>
 </Page>

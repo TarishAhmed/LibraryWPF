@@ -22,9 +22,9 @@ namespace LibraryWPF
     
         public int Qno { get; set; }
         public string Question1 { get; set; }
-        public Nullable<decimal> Mark_Available { get; set; }
+        public decimal Mark_Available { get; set; }
         public byte[] Picture { get; set; }
-        public Nullable<System.DateTime> PostDate { get; set; }
+        public System.DateTime PostDate { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<StudentAnswer> StudentAnswers { get; set; }

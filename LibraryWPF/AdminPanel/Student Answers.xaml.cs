@@ -23,6 +23,14 @@ namespace LibraryWPF
         public Student_Answers()
         {
             InitializeComponent();
+            loadgrid();
+        }
+        private void loadgrid()
+        {
+            WPFLibDatabaseEntities context = new WPFLibDatabaseEntities();
+            var data = from c in context.StudentAnswers
+                       select c; /*new { c.SAno, c.Roll_No, c.Answer, c.Qno , c.Mark_Obtained };*/
+            studentAnswerDataGrid.ItemsSource = data.ToList();
         }
     }
 }

@@ -1,0 +1,15 @@
+﻿<Page x:Class="LibraryWPF.Misc"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:LibraryWPF"
+      mc:Ignorable="d" 
+      d:DesignHeight="571" d:DesignWidth="758"
+      Title="Misc">
+
+    <Grid>
+        <Button x:Name="updatetot" Content="Update Total Marks" HorizontalAlignment="Left" Margin="285,52,0,0" VerticalAlignment="Top" Width="156" BorderBrush="{x:Null}" Height="46" FontSize="16" Click="updatetot_Click"/>
+
+    </Grid>
+</Page>

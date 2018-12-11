@@ -10,8 +10,8 @@
 
     <Grid>
         <TextBlock  TextWrapping="Wrap" Text="Marks You Scored!" VerticalAlignment="Top" HorizontalAlignment="Center" Width="328" FontSize="36" Margin="206,62,217,0" />
-        <Button Content="Generate" HorizontalAlignment="Left" Margin="318,399,0,0" VerticalAlignment="Top" Width="92" Height="43"/>
-        <TextBlock Text="Marks" HorizontalAlignment="Center" Margin="318,244,341,305" TextWrapping="Wrap" VerticalAlignment="Center" Width="92" Height="22" FontSize="16" TextAlignment="Center"></TextBlock>
+        <Button Content="Generate" HorizontalAlignment="Left" Margin="318,399,0,0" VerticalAlignment="Top" Width="92" Height="43" Click="Button_Click"/>
+        <TextBlock x:Name="marklbl" Text="Marks" HorizontalAlignment="Center" Margin="318,244,341,305" TextWrapping="Wrap" VerticalAlignment="Center" Width="92" Height="22" FontSize="16" TextAlignment="Center"></TextBlock>
 
     </Grid>
 </Page>

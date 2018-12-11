@@ -42,6 +42,38 @@ namespace LibraryWPF
                 Qsds.Add(q);
             }
 
+            var sc = from Questions in dbq.Questions
+                     where
+                           (from StudentAnswers in dbq.StudentAnswers
+                            where
+                            Questions.Qno == StudentAnswers.Qno &&
+                            StudentAnswers.Roll_No == Roll
+                            select new
+                            {
+                                StudentAnswers.Qno
+                            }).FirstOrDefault().Qno == null &&
+                       Questions.PostDate > DateTime.Now
+                     select new
+                     {
+                         Questions.Qno,
+                         Questions.PostDate
+                     };
+
+            qnolist.Items.Clear();
+            foreach (var i in sc)
+            {
+                qnolist.Items.Add(i.Qno.ToString());
+            }
+
+            if (qnolist.Items.Count<1)
+            {
+                noqstn.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                noqstn.Visibility = Visibility.Hidden;
+            }
+
         }
         private static BitmapImage LoadImage(byte[] imageData)
         {
@@ -66,47 +98,21 @@ namespace LibraryWPF
         {
             InitializeComponent();
             Roll = roll;
-            //calling created function Render
-            Render();
-            //.Select(d => d.Qno);
-            StudentAnswer studentAnswer = new StudentAnswer();
-            Question question = new Question();
-            //var sc = Qsds.Where(!(c => c.PostDate>=DateTime.Now));
-            var sc = from Questions in dbq.Questions
-                     where
-                           (from StudentAnswers in dbq.StudentAnswers
-                            where
-                            Questions.Qno == StudentAnswers.Qno &&
-                            StudentAnswers.Roll_No == Roll
-                            select new
-                            {
-                                StudentAnswers.Qno
-                            }).FirstOrDefault().Qno == null &&
-                       Questions.PostDate > DateTime.Now
-                     select new
-                     {
-                         Questions.Qno,
-                         Questions.PostDate
-                     };
-
-
-            foreach (var i in sc)
-            {
-
-                qnolist.Items.Add(i.Qno.ToString());
-            }
-            
+            Render();   //calling created function Render
         }
         
         private void qnolist_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            if(qnolist.Items.Count>0)
+            { 
             var qc = Qsds.FirstOrDefault(a => a.Qno.Equals(Convert.ToInt32(qnolist.SelectedValue.ToString())));
             if (qc != null)
             {
                 qntxt.Text = qc.Question1;
                 img.Source = LoadImage((byte[])qc.Picture);
             }
-            
+            }
+
         }
 
         private void submitbtn_Click(object sender, RoutedEventArgs e)
@@ -120,6 +126,7 @@ namespace LibraryWPF
             answertxt.Clear();
             qntxt.Clear();
             img.Source = null;
+            Render();
         }
     }
 }

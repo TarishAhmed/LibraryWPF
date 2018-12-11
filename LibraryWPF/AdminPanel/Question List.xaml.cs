@@ -23,6 +23,14 @@ namespace LibraryWPF
         public Question_List()
         {
             InitializeComponent();
+            loadgrid();
+        }
+        private void loadgrid()
+        {
+            WPFLibDatabaseEntities context = new WPFLibDatabaseEntities();
+            var data = from c in context.Questions
+                       select new { c.Qno, c.Question1, c.Mark_Available, c.Picture , c.PostDate };
+            questionDataGrid.ItemsSource = data.ToList();
         }
     }
 }

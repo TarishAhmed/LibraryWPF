@@ -29,6 +29,6 @@ namespace LibraryWPF
         public virtual DbSet<Question> Questions { get; set; }
         public virtual DbSet<StudentAnswer> StudentAnswers { get; set; }
         public virtual DbSet<StudentModelLogin> StudentModelLogins { get; set; }
-        public virtual DbSet<Table> Tables { get; set; }
+        public virtual DbSet<View_TotalMarks> View_TotalMarks { get; set; }
     }
 }

@@ -11,8 +11,8 @@
     <Grid>
         <TextBlock HorizontalAlignment="Left" Margin="319,130,0,0" TextWrapping="Wrap" Text="Login" VerticalAlignment="Top" FontSize="48"/>
         <TextBlock HorizontalAlignment="Left" Margin="278,199,0,0" TextWrapping="Wrap" Text="Scan ID to Continue" VerticalAlignment="Top" FontSize="20" Width="193" TextAlignment="Center"/>
-        <TextBox x:Name="stud" HorizontalAlignment="Left" Height="23" Margin="278,252,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="193"/>
-        <Button x:Name="login" Content="Login" HorizontalAlignment="Left" Margin="490,252,0,0" VerticalAlignment="Top" Width="75" Height="23" Click="login_Click"/>
+        <TextBox TabIndex="0" x:Name="stud" HorizontalAlignment="Left" Height="23" Margin="278,252,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="193"/>
+        <Button IsDefault="True" x:Name="login" Content="Login" HorizontalAlignment="Left" Margin="490,252,0,0" VerticalAlignment="Top" Width="75" Height="23" Click="login_Click"/>
 
     </Grid>
 </Page>

@@ -8,7 +8,23 @@
       d:DesignHeight="578" d:DesignWidth="751"
       Title="Question_List">
 
+
     <Grid>
-        
+        <DataGrid GridLinesVisibility="Horizontal" x:Name="questionDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" RowDetailsVisibilityMode="VisibleWhenSelected">
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="qnoColumn" Binding="{Binding Qno}" Header="Qno" IsReadOnly="True" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="questionColumn" Binding="{Binding Question1}" IsReadOnly="True"  Header="Question" Width="320" FontSize="24"/>
+                <DataGridTextColumn x:Name="mark_AvailableColumn" Binding="{Binding Mark_Available}" Header="Mark Available" Width="SizeToHeader"/>
+                <DataGridTemplateColumn x:Name="pictureColumn" Header="Picture" Width="207">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Image Source="{Binding Picture}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn x:Name="PostDateColumn" Binding="{Binding PostDate}" Header="Post Date" Width="100"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
     </Grid>
 </Page>

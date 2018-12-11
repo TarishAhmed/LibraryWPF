@@ -5,19 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LibraryWPF"
         mc:Ignorable="d"
-        Title="StudentPanel" Height="600" Width="900" Background="White" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Icon="Icons/task.png">
+        Title="Student Panel" Height="600" Width="900" Background="White"  WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Icon="Icons/task.png">
     <Grid>
         <Grid HorizontalAlignment="Left" Height="571" VerticalAlignment="Top" Width="126">
 
-            <Button x:Name="qstns" Content="Questions"  Margin="0,128,0,0" VerticalAlignment="Top" Height="46" Background="#4CDDDDDD" BorderBrush="{x:Null}" Foreground="#FF5F5757" Padding="5,0,-15,0" Click="qstns_Click"/>
-            <Image HorizontalAlignment="Left" Height="32" VerticalAlignment="Top" Width="26" RenderTransformOrigin="0.5,0.5" Margin="6,135,0,0" Source="Icons/info.png">
+            <Button x:Name="qstns" Content="Questions"  Margin="0,131,0,0" VerticalAlignment="Top" Height="46" Background="#4CDDDDDD" BorderBrush="{x:Null}" Foreground="#FF5F5757" Padding="5,0,-15,0" Click="qstns_Click"/>
+            <Image HorizontalAlignment="Left" Height="32" VerticalAlignment="Top" Width="26" RenderTransformOrigin="0.5,0.5" Margin="6,139,0,0" Source="Icons/info.png">
             </Image>
-            <Button x:Name="mrks" Content="Marks"  Margin="0,171,0,0" VerticalAlignment="Top" Height="44" Background="#4CDDDDDD" BorderBrush="{x:Null}" Foreground="#FF5F5757" Padding="1,0,-15,0" Click="mrks_Click"/>
-            <Image HorizontalAlignment="Left" Height="32" VerticalAlignment="Top" Width="26" RenderTransformOrigin="0.5,0.5" Margin="6,177,0,0" Source="Icons/icons8-true-false-64.png">
+            <Button x:Name="mrks" Content="Marks"  Margin="0,176,0,0" VerticalAlignment="Top" Height="44" Background="#4CDDDDDD" BorderBrush="{x:Null}" Foreground="#FF5F5757" Padding="1,0,-15,0" Click="mrks_Click"/>
+            <Image HorizontalAlignment="Left" Height="32" VerticalAlignment="Top" Width="26" RenderTransformOrigin="0.5,0.5" Margin="6,182,0,0" Source="Icons/icons8-true-false-64.png">
             </Image>
-            <Button x:Name="rnk" Content="Ranking" HorizontalAlignment="Left" Margin="0,212,0,0" VerticalAlignment="Top" Width="126" Height="46" Background="#4CDDDDDD" BorderBrush="{x:Null}" Foreground="#FF5F5757" Padding="1,0,-15,0" Click="rnk_Click"/>
-            <Image HorizontalAlignment="Left" Height="32" VerticalAlignment="Top" Width="26" RenderTransformOrigin="0.5,0.5" Margin="6,220,0,0" Source="Icons/winner.png"></Image>
-            <TextBlock x:Name="rolltext" HorizontalAlignment="Left" Margin="10,49,0,0" TextWrapping="Wrap" Text="Roll No." VerticalAlignment="Top" Width="106"/>
+            <Button x:Name="rnk" Content="Ranking" HorizontalAlignment="Left" Margin="0,219,0,0" VerticalAlignment="Top" Width="126" Height="46" Background="#4CDDDDDD" BorderBrush="{x:Null}" Foreground="#FF5F5757" Padding="1,0,-15,0" Click="rnk_Click"/>
+            <Image HorizontalAlignment="Left" Height="32" VerticalAlignment="Top" Width="26" RenderTransformOrigin="0.5,0.5" Margin="6,225,0,0" Source="Icons/winner.png"></Image>
+            <TextBlock x:Name="rolltext" HorizontalAlignment="Left" Margin="10,51,0,0" TextWrapping="Wrap" Text="Roll No." VerticalAlignment="Top" Width="106"/>
             <TextBlock x:Name="nametext" HorizontalAlignment="Left" Margin="10,84,0,0" TextWrapping="Wrap" Text="Name" VerticalAlignment="Top" Width="106"/>
             <Grid.Background>
                 <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">

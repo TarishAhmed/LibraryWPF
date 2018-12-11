@@ -23,6 +23,7 @@ namespace LibraryWPF
         public AdminLogin()
         {
             InitializeComponent();
+            Admin.Focus();
         }
 
         private void Loginbtn_Click(object sender, RoutedEventArgs e)

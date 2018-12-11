@@ -18,6 +18,7 @@
         <TextBlock HorizontalAlignment="Left" Margin="404,73,0,0" TextWrapping="Wrap" Text="Question" VerticalAlignment="Top" Width="52" Foreground="#FF87CB43"/>
         <TextBlock HorizontalAlignment="Left" Margin="404,259,0,0" TextWrapping="Wrap" Text="Answer" VerticalAlignment="Top" Width="43" Foreground="#FF87CB43"/>
         <TextBlock HorizontalAlignment="Left" Margin="131,259,0,0" TextWrapping="Wrap" Text="Picture Box" VerticalAlignment="Top" Width="100" Foreground="#FF87CB43"/>
+        <TextBlock x:Name="noqstn" HorizontalAlignment="Left" Margin="216,24,0,0" TextWrapping="Wrap" Text="No Questions To Show" VerticalAlignment="Top" FontSize="24" Foreground="#FFA62424" Visibility="Hidden"/>
 
     </Grid>
 </Page>

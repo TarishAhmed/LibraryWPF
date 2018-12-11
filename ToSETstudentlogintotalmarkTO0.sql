@@ -1,0 +1,1 @@
+﻿Update [dbo].[StudentLogin] set Total_Mark = 0 where Total_Mark IS NULL;

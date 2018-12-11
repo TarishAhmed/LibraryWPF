@@ -12,9 +12,9 @@ namespace LibraryWPF
     using System;
     using System.Collections.Generic;
     
-    public partial class Table
+    public partial class View_TotalMarks
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
+        public string Roll_No { get; set; }
+        public Nullable<decimal> TotalMark { get; set; }
     }
 }

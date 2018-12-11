@@ -18,10 +18,10 @@
             <PropertyRef Name="Qno" />
           </Key>
           <Property Name="Qno" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Question" Type="nvarchar" MaxLength="300" />
-          <Property Name="Mark_Available" Type="numeric" Precision="3" Scale="1" />
+          <Property Name="Question" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="Mark_Available" Type="numeric" Precision="3" Scale="1" Nullable="false" />
           <Property Name="Picture" Type="image" />
-          <Property Name="PostDate" Type="datetime2" Precision="7" />
+          <Property Name="PostDate" Type="datetime2" Precision="7" Nullable="false" />
         </EntityType>
         <EntityType Name="StudentAnswer">
           <Key>
@@ -42,12 +42,14 @@
           <Property Name="Gender" Type="nvarchar" MaxLength="10" />
           <Property Name="Total_Mark" Type="numeric" Precision="4" Scale="2" />
         </EntityType>
-        <EntityType Name="Table">
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'C:\USERS\TARIS\SOURCE\REPOS\LIBRARYWPF\LIBRARYWPF\WPFLIBDATABASE.MDF.dbo.View_TotalMarks' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="View_TotalMarks">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="Roll_No" />
           </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Roll_No" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="TotalMark" Type="numeric" Precision="38" Scale="1" />
         </EntityType>
         <Association Name="FK_StudentAnswer_Question">
           <End Role="Question" Type="Self.Question" Multiplicity="0..1" />
@@ -78,7 +80,12 @@
           <EntitySet Name="Question" EntityType="Self.Question" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="StudentAnswer" EntityType="Self.StudentAnswer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="StudentLogin" EntityType="Self.StudentLogin" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Table" EntityType="Self.Table" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="View_TotalMarks" EntityType="Self.View_TotalMarks" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [View_TotalMarks].[Roll_No] AS [Roll_No], 
+    [View_TotalMarks].[TotalMark] AS [TotalMark]
+    FROM [dbo].[View_TotalMarks] AS [View_TotalMarks]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK_StudentAnswer_Question" Association="Self.FK_StudentAnswer_Question">
             <End Role="Question" EntitySet="Question" />
             <End Role="StudentAnswer" EntitySet="StudentAnswer" />
@@ -113,17 +120,17 @@
             <End Role="StudentLogin" EntitySet="StudentModelLogins" />
             <End Role="StudentAnswer" EntitySet="StudentAnswers" />
           </AssociationSet>
-          <EntitySet Name="Tables" EntityType="WPFLibDatabaseModel.Table" />
+          <EntitySet Name="View_TotalMarks" EntityType="WPFLibDatabaseModel.View_TotalMarks" />
         </EntityContainer>
         <EntityType Name="Question">
           <Key>
             <PropertyRef Name="Qno" />
           </Key>
           <Property Name="Qno" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Question1" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
-          <Property Name="Mark_Available" Type="Decimal" Precision="3" Scale="1" />
+          <Property Name="Question1" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Mark_Available" Type="Decimal" Precision="3" Scale="1" Nullable="false" />
           <Property Name="Picture" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <Property Name="PostDate" Type="DateTime" Precision="7" />
+          <Property Name="PostDate" Type="DateTime" Precision="7" Nullable="false" />
           <NavigationProperty Name="StudentAnswers" Relationship="WPFLibDatabaseModel.FK_StudentAnswer_Question" FromRole="Question" ToRole="StudentAnswer" />
         </EntityType>
         <EntityType Name="StudentAnswer">
@@ -172,12 +179,12 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="Table">
+        <EntityType Name="View_TotalMarks">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="Roll_No" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Roll_No" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TotalMark" Type="Decimal" Precision="38" Scale="1" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -226,11 +233,11 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Tables">
-            <EntityTypeMapping TypeName="WPFLibDatabaseModel.Table">
-              <MappingFragment StoreEntitySet="Table">
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
+          <EntitySetMapping Name="View_TotalMarks">
+            <EntityTypeMapping TypeName="WPFLibDatabaseModel.View_TotalMarks">
+              <MappingFragment StoreEntitySet="View_TotalMarks">
+                <ScalarProperty Name="TotalMark" ColumnName="TotalMark" />
+                <ScalarProperty Name="Roll_No" ColumnName="Roll_No" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

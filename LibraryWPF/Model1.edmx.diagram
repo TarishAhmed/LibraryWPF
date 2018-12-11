@@ -11,7 +11,7 @@
         <AssociationConnector Association="WPFLibDatabaseModel.FK_StudentAnswer_Question" />
         <EntityTypeShape EntityType="WPFLibDatabaseModel.StudentModelLogin" Width="1.5" PointX="3.375" PointY="1" />
         <AssociationConnector Association="WPFLibDatabaseModel.FK_StudentAnswer_StudentLogin" />
-        <EntityTypeShape EntityType="WPFLibDatabaseModel.Table" Width="1.5" PointX="0.75" PointY="3.75" />
+        <EntityTypeShape EntityType="WPFLibDatabaseModel.View_TotalMarks" Width="1.5" PointX="5.375" PointY="4.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

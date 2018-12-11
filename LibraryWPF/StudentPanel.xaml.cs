@@ -27,7 +27,6 @@ namespace LibraryWPF
             rolltext.Text = roll;
             nametext.Text = nam;
             studframe.Content = new Questions(roll);
-            
         }
         private void qstns_Click(object sender, RoutedEventArgs e)
         {
@@ -36,7 +35,7 @@ namespace LibraryWPF
 
         private void mrks_Click(object sender, RoutedEventArgs e)
         {
-            studframe.Content = new Marks();
+            studframe.Content = new Marks(Roll);
         }
 
         private void rnk_Click(object sender, RoutedEventArgs e)
