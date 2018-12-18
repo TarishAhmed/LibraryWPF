@@ -13,6 +13,13 @@
           <Property Name="AdminID" Type="nvarchar" MaxLength="50" />
           <Property Name="Password" Type="nvarchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="Discipline">
+          <Key>
+            <PropertyRef Name="Roll_No" />
+          </Key>
+          <Property Name="Roll_No" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Deduction" Type="numeric" Precision="5" Scale="0" />
+        </EntityType>
         <EntityType Name="Question">
           <Key>
             <PropertyRef Name="Qno" />
@@ -43,6 +50,15 @@
           <Property Name="Total_Mark" Type="numeric" Precision="4" Scale="2" />
         </EntityType>
         <!--Errors Found During Generation:
+warning 6002: The table/view 'C:\USERS\TARIS\SOURCE\REPOS\LIBRARYWPF\LIBRARYWPF\WPFLIBDATABASE.MDF.dbo.View_DisciplinedMarks' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="View_DisciplinedMarks">
+          <Key>
+            <PropertyRef Name="Roll_No" />
+          </Key>
+          <Property Name="Roll_No" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Deduction" Type="numeric" Precision="38" Scale="0" />
+        </EntityType>
+        <!--Errors Found During Generation:
 warning 6002: The table/view 'C:\USERS\TARIS\SOURCE\REPOS\LIBRARYWPF\LIBRARYWPF\WPFLIBDATABASE.MDF.dbo.View_TotalMarks' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="View_TotalMarks">
           <Key>
@@ -51,6 +67,18 @@ warning 6002: The table/view 'C:\USERS\TARIS\SOURCE\REPOS\LIBRARYWPF\LIBRARYWPF\
           <Property Name="Roll_No" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="TotalMark" Type="numeric" Precision="38" Scale="1" />
         </EntityType>
+        <Association Name="FK_Discipline_StudentLogin">
+          <End Role="StudentLogin" Type="Self.StudentLogin" Multiplicity="1" />
+          <End Role="Discipline" Type="Self.Discipline" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="StudentLogin">
+              <PropertyRef Name="Roll_No" />
+            </Principal>
+            <Dependent Role="Discipline">
+              <PropertyRef Name="Roll_No" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_StudentAnswer_Question">
           <End Role="Question" Type="Self.Question" Multiplicity="0..1" />
           <End Role="StudentAnswer" Type="Self.StudentAnswer" Multiplicity="*" />
@@ -77,15 +105,26 @@ warning 6002: The table/view 'C:\USERS\TARIS\SOURCE\REPOS\LIBRARYWPF\LIBRARYWPF\
         </Association>
         <EntityContainer Name="WPFLibDatabaseModelStoreContainer">
           <EntitySet Name="AdminLogin" EntityType="Self.AdminLogin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Discipline" EntityType="Self.Discipline" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Question" EntityType="Self.Question" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="StudentAnswer" EntityType="Self.StudentAnswer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="StudentLogin" EntityType="Self.StudentLogin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="View_DisciplinedMarks" EntityType="Self.View_DisciplinedMarks" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [View_DisciplinedMarks].[Roll_No] AS [Roll_No], 
+    [View_DisciplinedMarks].[Deduction] AS [Deduction]
+    FROM [dbo].[View_DisciplinedMarks] AS [View_DisciplinedMarks]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="View_TotalMarks" EntityType="Self.View_TotalMarks" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [View_TotalMarks].[Roll_No] AS [Roll_No], 
     [View_TotalMarks].[TotalMark] AS [TotalMark]
     FROM [dbo].[View_TotalMarks] AS [View_TotalMarks]</DefiningQuery>
           </EntitySet>
+          <AssociationSet Name="FK_Discipline_StudentLogin" Association="Self.FK_Discipline_StudentLogin">
+            <End Role="StudentLogin" EntitySet="StudentLogin" />
+            <End Role="Discipline" EntitySet="Discipline" />
+          </AssociationSet>
           <AssociationSet Name="FK_StudentAnswer_Question" Association="Self.FK_StudentAnswer_Question">
             <End Role="Question" EntitySet="Question" />
             <End Role="StudentAnswer" EntitySet="StudentAnswer" />
@@ -121,6 +160,12 @@ warning 6002: The table/view 'C:\USERS\TARIS\SOURCE\REPOS\LIBRARYWPF\LIBRARYWPF\
             <End Role="StudentAnswer" EntitySet="StudentAnswers" />
           </AssociationSet>
           <EntitySet Name="View_TotalMarks" EntityType="WPFLibDatabaseModel.View_TotalMarks" />
+          <EntitySet Name="Disciplines" EntityType="WPFLibDatabaseModel.Discipline" />
+          <EntitySet Name="View_DisciplinedMarks" EntityType="WPFLibDatabaseModel.View_DisciplinedMarks" />
+          <AssociationSet Name="FK_Discipline_StudentLogin" Association="WPFLibDatabaseModel.FK_Discipline_StudentLogin">
+            <End Role="StudentModelLogin" EntitySet="StudentModelLogins" />
+            <End Role="Discipline" EntitySet="Disciplines" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Question">
           <Key>
@@ -166,6 +211,7 @@ warning 6002: The table/view 'C:\USERS\TARIS\SOURCE\REPOS\LIBRARYWPF\LIBRARYWPF\
           <Property Name="Gender" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="Total_Mark" Type="Decimal" Precision="4" Scale="2" />
           <NavigationProperty Name="StudentAnswers" Relationship="WPFLibDatabaseModel.FK_StudentAnswer_StudentLogin" FromRole="StudentLogin" ToRole="StudentAnswer" />
+          <NavigationProperty Name="Discipline" Relationship="WPFLibDatabaseModel.FK_Discipline_StudentLogin" FromRole="StudentModelLogin" ToRole="Discipline" />
         </EntityType>
         <Association Name="FK_StudentAnswer_StudentLogin">
           <End Type="WPFLibDatabaseModel.StudentModelLogin" Role="StudentLogin" Multiplicity="0..1" />
@@ -186,6 +232,33 @@ warning 6002: The table/view 'C:\USERS\TARIS\SOURCE\REPOS\LIBRARYWPF\LIBRARYWPF\
           <Property Name="Roll_No" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="TotalMark" Type="Decimal" Precision="38" Scale="1" />
         </EntityType>
+        <EntityType Name="Discipline">
+          <Key>
+            <PropertyRef Name="Roll_No" />
+          </Key>
+          <Property Name="Roll_No" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Deduction" Type="Decimal" Precision="5" Scale="0" />
+          <NavigationProperty Name="StudentLogin" Relationship="WPFLibDatabaseModel.FK_Discipline_StudentLogin" FromRole="Discipline" ToRole="StudentModelLogin" />
+        </EntityType>
+        <EntityType Name="View_DisciplinedMarks">
+          <Key>
+            <PropertyRef Name="Roll_No" />
+          </Key>
+          <Property Name="Roll_No" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Deduction" Type="Decimal" Precision="38" Scale="0" />
+        </EntityType>
+        <Association Name="FK_Discipline_StudentLogin">
+          <End Type="WPFLibDatabaseModel.StudentModelLogin" Role="StudentModelLogin" Multiplicity="1" />
+          <End Type="WPFLibDatabaseModel.Discipline" Role="Discipline" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="StudentModelLogin">
+              <PropertyRef Name="Roll_No" />
+            </Principal>
+            <Dependent Role="Discipline">
+              <PropertyRef Name="Roll_No" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -237,6 +310,22 @@ warning 6002: The table/view 'C:\USERS\TARIS\SOURCE\REPOS\LIBRARYWPF\LIBRARYWPF\
             <EntityTypeMapping TypeName="WPFLibDatabaseModel.View_TotalMarks">
               <MappingFragment StoreEntitySet="View_TotalMarks">
                 <ScalarProperty Name="TotalMark" ColumnName="TotalMark" />
+                <ScalarProperty Name="Roll_No" ColumnName="Roll_No" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Disciplines">
+            <EntityTypeMapping TypeName="WPFLibDatabaseModel.Discipline">
+              <MappingFragment StoreEntitySet="Discipline">
+                <ScalarProperty Name="Deduction" ColumnName="Deduction" />
+                <ScalarProperty Name="Roll_No" ColumnName="Roll_No" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="View_DisciplinedMarks">
+            <EntityTypeMapping TypeName="WPFLibDatabaseModel.View_DisciplinedMarks">
+              <MappingFragment StoreEntitySet="View_DisciplinedMarks">
+                <ScalarProperty Name="Deduction" ColumnName="Deduction" />
                 <ScalarProperty Name="Roll_No" ColumnName="Roll_No" />
               </MappingFragment>
             </EntityTypeMapping>

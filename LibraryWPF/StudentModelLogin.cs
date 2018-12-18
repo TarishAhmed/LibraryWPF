@@ -27,5 +27,6 @@ namespace LibraryWPF
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<StudentAnswer> StudentAnswers { get; set; }
+        public virtual Discipline Discipline { get; set; }
     }
 }

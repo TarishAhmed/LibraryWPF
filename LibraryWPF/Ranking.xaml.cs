@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace LibraryWPF
 {
@@ -21,10 +22,17 @@ namespace LibraryWPF
     public partial class Ranking : Page
     {
         WPFLibDatabaseEntities entities = new WPFLibDatabaseEntities();
+        DispatcherTimer dispatcherTimer = new DispatcherTimer();
         public Ranking()
         {
             InitializeComponent();
-            
+            Generate.Focus();
+            dispatcherTimer.Tick += DispatcherTimer_Tick;
+        }
+
+        private void DispatcherTimer_Tick(object sender, EventArgs e)
+        {
+            status.Visibility = Visibility.Collapsed;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -35,6 +43,9 @@ namespace LibraryWPF
                        select new { c.Roll_No, c.Name ,c.Gender, c.Total_Mark }).Take(10);
 
             ContentDataGrid.ItemsSource = data.ToList();
+            status.Text = "Please update changes from misc before viewing!";
+            dispatcherTimer.Interval = new TimeSpan(0, 0, 3);
+            dispatcherTimer.Start();
         }
         private void OnKeyDownHandler(object sender, KeyEventArgs e)
         {
@@ -47,6 +58,11 @@ namespace LibraryWPF
 
                 ContentDataGrid.ItemsSource = data.ToList();
             }
+        }
+
+        private void Grid_Loaded(object sender, RoutedEventArgs e)
+        {
+            
         }
     }
 }

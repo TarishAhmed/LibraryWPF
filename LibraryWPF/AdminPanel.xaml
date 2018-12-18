@@ -22,6 +22,8 @@
             <Image HorizontalAlignment="Left" Height="33" VerticalAlignment="Top" Width="28" RenderTransformOrigin="0.5,0.5" Margin="7,342,0,0" Source="Icons/question.png"/>
             <Button x:Name="misc" Content="Misc" HorizontalAlignment="Left" Margin="0,381,0,0" VerticalAlignment="Top" Width="126" Height="46" Background="#4CDDDDDD" BorderBrush="{x:Null}" Foreground="#FF5F5757" Padding="1,0,-15,0" Click="Misc_Click"/>
             <Image HorizontalAlignment="Left" Height="32" VerticalAlignment="Top" Width="26" RenderTransformOrigin="0.5,0.5" Margin="7,390,0,0" Source="Icons/project-management.png"/>
+            <Button x:Name="discipline" Content="Discipline" HorizontalAlignment="Left" Margin="0,426,0,0" VerticalAlignment="Top" Width="126" Height="46" Background="#4CDDDDDD" BorderBrush="{x:Null}" Foreground="#FF5F5757" Padding="1,0,-15,0" Click="discipline_Click"/>
+            <Image HorizontalAlignment="Left" Height="32" VerticalAlignment="Top" Width="26" RenderTransformOrigin="0.5,0.5" Margin="7,435,0,0" Source="Icons/noun_discipline_475445.png"/>
             <Grid.Background>
                 <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
                     <GradientStop Color="#FF90D37D"/>
@@ -29,7 +31,7 @@
                 </LinearGradientBrush>
             </Grid.Background>
         </Grid>
-        <Frame x:Name="adminframe" NavigationUIVisibility="Hidden" Content="" HorizontalAlignment="Left" Height="571" Margin="126,0,0,0" VerticalAlignment="Top" Width="758"/>
+        <Frame x:Name="adminframe" NavigationUIVisibility="Hidden" Content="" HorizontalAlignment="Left" Height="571" Margin="126,0,0,0" VerticalAlignment="Top" Width="758" ContentRendered="adminframe_ContentRendered"/>
 
     </Grid>
 </Window>

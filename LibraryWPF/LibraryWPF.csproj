@@ -96,6 +96,12 @@
     <Compile Include="AdminPanel\Correction.xaml.cs">
       <DependentUpon>Correction.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Discipline.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Discipline.xaml.cs">
+      <DependentUpon>Discipline.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Misc.xaml.cs">
       <DependentUpon>Misc.xaml</DependentUpon>
     </Compile>
@@ -151,8 +157,14 @@
     <Compile Include="StudentPanel.xaml.cs">
       <DependentUpon>StudentPanel.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View_DisciplinedMarks.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="View_TotalMarks.cs">
       <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WPFLibDatabaseDataSet.cs">
+      <DependentUpon>WPFLibDatabaseDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="WPFLibDatabaseDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -168,6 +180,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="AdminPanel\Correction.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Discipline.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -330,6 +346,10 @@
   <ItemGroup>
     <Resource Include="Icons\task.png" />
     <Resource Include="Icons\project-management.png" />
+    <Resource Include="Icons\monochrome-minimalism-sphere-pattern-circle-golden-ratio-36329-wallhere.com.jpg" />
+    <Resource Include="Icons\white black.jpg" />
+    <Resource Include="Icons\colored.jpg" />
+    <Resource Include="Icons\noun_discipline_475445.png" />
     <Content Include="Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model1.edmx</DependentUpon>

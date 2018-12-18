@@ -35,6 +35,13 @@ namespace LibraryWPF
             {
                 item.sl.Total_Mark = item.tm.TotalMark;
             }
+            var di = from sl in dbm.StudentModelLogins
+                     join de in dbm.View_DisciplinedMarks on sl.Roll_No equals de.Roll_No
+                     select new { sl, de };
+            foreach (var item in di)
+            {
+                item.sl.Total_Mark = item.sl.Total_Mark - (item.de.Deduction);
+            }
             dbm.SaveChanges();
         }
     }
