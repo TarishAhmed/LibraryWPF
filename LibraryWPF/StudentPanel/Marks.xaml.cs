@@ -21,7 +21,7 @@ namespace LibraryWPF
     /// </summary>
     public partial class Marks : Page
     {
-        WPFLibDatabaseEntities wPFLib = new WPFLibDatabaseEntities();
+        WPFLIBDATABASEEntities wPFLib = new WPFLIBDATABASEEntities();
         public ObservableCollection<StudentLogin> slds;
         string Roll;
         public Marks(string roll)

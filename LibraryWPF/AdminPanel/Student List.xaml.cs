@@ -61,7 +61,7 @@ namespace LibraryWPF
 
         private void loadgrid()
         {
-            WPFLibDatabaseEntities context = new WPFLibDatabaseEntities();
+            WPFLIBDATABASEEntities context = new WPFLIBDATABASEEntities();
             var data = from c in context.StudentModelLogins
                        select new { c.Roll_No, c.Name, c.Gender, c.Total_Mark };
             studgrid.ItemsSource = data.ToList();

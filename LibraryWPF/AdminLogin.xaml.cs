@@ -28,27 +28,33 @@ namespace LibraryWPF
 
         private void Loginbtn_Click(object sender, RoutedEventArgs e)
         {
-            WPFLibDatabaseEntities dbe = new WPFLibDatabaseEntities();
-            if (Admin.Text != string.Empty || AdminPassword.Password != string.Empty)
+            try
             {
-                var Admins = dbe.AdminLogins.FirstOrDefault(a => a.AdminID.Equals(Admin.Text));
-                if (Admins != null)
+                WPFLIBDATABASEEntities dbe = new WPFLIBDATABASEEntities();
+                if (Admin.Text != string.Empty || AdminPassword.Password != string.Empty)
                 {
-                    if (Admins.Password.Equals(AdminPassword.Password))
+                    var Admins = dbe.AdminLogins.FirstOrDefault(a => a.AdminID.Equals(Admin.Text));
+                    if (Admins != null)
                     {
-                        AdminPanel adpa = new AdminPanel();
-                        Application.Current.Windows[0].Close();
-                        adpa.ShowDialog();
+                        if (Admins.Password.Equals(AdminPassword.Password))
+                        {
+                            AdminPanel adpa = new AdminPanel();
+                            Application.Current.Windows[0].Close();
+                            adpa.ShowDialog();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Password Incorrect");
+                        }
                     }
                     else
                     {
-                        MessageBox.Show("Password Incorrect");
+                        MessageBox.Show("Admin Invalid");
                     }
                 }
-                else
-                {
-                    MessageBox.Show("Admin Invalid");
-                }
+            }catch(Exception ex)
+            {
+                MessageBox.Show(""+ex.Message);
             }
         }
 

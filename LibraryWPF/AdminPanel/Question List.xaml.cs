@@ -27,7 +27,7 @@ namespace LibraryWPF
         }
         private void loadgrid()
         {
-            WPFLibDatabaseEntities context = new WPFLibDatabaseEntities();
+            WPFLIBDATABASEEntities context = new WPFLIBDATABASEEntities();
             var data = from c in context.Questions
                        select new { c.Qno, c.Question1, c.Mark_Available, c.Picture , c.PostDate };
             questionDataGrid.ItemsSource = data.ToList();

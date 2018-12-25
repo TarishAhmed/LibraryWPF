@@ -5,16 +5,19 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:LibraryWPF"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="571" d:DesignWidth="758"
       Title="Discipline">
 
     <Grid>
-        <ComboBox x:Name="studcombo" HorizontalAlignment="Center" Margin="0,0,200,100"  VerticalAlignment="Center" Width="132" Height="23"/>
-        <TextBox x:Name="disciplinetxt" HorizontalAlignment="Center" Margin="0,0,-200,100" Height="23"  TextWrapping="Wrap" VerticalAlignment="Center" Width="50"/>
-        <TextBlock HorizontalAlignment="Center" TextAlignment="Center" Margin="0,0,200,200" TextWrapping="Wrap" Text="Name" VerticalAlignment="Center" Width="120" FontSize="18"/>
-        <TextBlock HorizontalAlignment="Center" TextAlignment="Center" Margin="0,0,-200,200" TextWrapping="Wrap" Text="Deduction" VerticalAlignment="Center" Width="120" FontSize="18"/>
-        <Button x:Name="discsubmit" IsDefault="True" Content="Submit" HorizontalAlignment="Center" Margin="0,0,0,-100" VerticalAlignment="Center" Width="75" Click="discsubmit_Click"/>
-        <TextBlock x:Name="status" HorizontalAlignment="Left" Margin="332,402,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="131"/>
+        <ComboBox x:Name="studcombo"  Margin="206,220,372,331" Height="20"   />
+        <TextBox x:Name="disciplinetxt" Height="20"  TextWrapping="Wrap" Width="40" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="500,220,218,331" />
+        <TextBlock x:Name="nameroll" HorizontalAlignment="Center" TextAlignment="Center" Margin="236,180,402,371" TextWrapping="Wrap" Text="Roll No." VerticalAlignment="Center" Width="120" FontSize="16" Height="20"/>
+        <TextBlock HorizontalAlignment="Center" TextAlignment="Center" Margin="455,180,183,371" TextWrapping="Wrap" Text="Deduction" VerticalAlignment="Center" Width="120" FontSize="16" Height="20"/>
+        <Button x:Name="discsubmit" Content="Submit"  Margin="386,420,312,131" Height="20" Width="60" Click="discsubmit_Click"/>
+        <TextBlock x:Name="status" HorizontalAlignment="Center" Margin="346,0,272,20"  TextWrapping="Wrap" Text="" VerticalAlignment="Bottom" Width="140"/>
+        <TextBox x:Name="remarktxt" HorizontalAlignment="Center" Height="100" Margin="287,300,232,171" AcceptsReturn="True"  TextWrapping="Wrap" VerticalAlignment="Center" Width="239"/>
+        <TextBlock HorizontalAlignment="Center" TextAlignment="Center" Margin="346,260,292,291" TextWrapping="Wrap" Text="Remarks" VerticalAlignment="Center" Width="120" FontSize="16" Height="20"/>
+        <CheckBox x:Name="namerollchk" Content="Check by Name" HorizontalAlignment="Left" Margin="81,220,0,0" VerticalAlignment="Top" Checked="CheckBox_Checked" Width="120" Unchecked="CheckBox_Unchecked" Height="20"/>
 
     </Grid>
 </Page>

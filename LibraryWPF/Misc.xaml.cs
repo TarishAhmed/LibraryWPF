@@ -20,7 +20,7 @@ namespace LibraryWPF
     /// </summary>
     public partial class Misc : Page
     {
-        WPFLibDatabaseEntities dbm = new WPFLibDatabaseEntities();
+        WPFLIBDATABASEEntities dbm = new WPFLIBDATABASEEntities();
         public Misc()
         {
             InitializeComponent();

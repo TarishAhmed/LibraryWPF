@@ -13,10 +13,10 @@ namespace LibraryWPF
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class WPFLibDatabaseEntities : DbContext
+    public partial class WPFLIBDATABASEEntities : DbContext
     {
-        public WPFLibDatabaseEntities()
-            : base("name=WPFLibDatabaseEntities")
+        public WPFLIBDATABASEEntities()
+            : base("name=WPFLIBDATABASEEntities")
         {
         }
     
@@ -26,11 +26,11 @@ namespace LibraryWPF
         }
     
         public virtual DbSet<AdminLogin> AdminLogins { get; set; }
+        public virtual DbSet<DisciplineModel> DisciplineModels { get; set; }
         public virtual DbSet<Question> Questions { get; set; }
         public virtual DbSet<StudentAnswer> StudentAnswers { get; set; }
         public virtual DbSet<StudentModelLogin> StudentModelLogins { get; set; }
-        public virtual DbSet<View_TotalMarks> View_TotalMarks { get; set; }
-        public virtual DbSet<Discipline> Disciplines { get; set; }
         public virtual DbSet<View_DisciplinedMarks> View_DisciplinedMarks { get; set; }
+        public virtual DbSet<View_TotalMarks> View_TotalMarks { get; set; }
     }
 }

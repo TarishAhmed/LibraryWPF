@@ -5,14 +5,17 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:LibraryWPF"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="421" d:DesignWidth="694"
       Title="StudentLogin">
 
     <Grid>
-        <TextBlock HorizontalAlignment="Left" Margin="319,130,0,0" TextWrapping="Wrap" Text="Login" VerticalAlignment="Top" FontSize="48"/>
-        <TextBlock HorizontalAlignment="Left" Margin="278,199,0,0" TextWrapping="Wrap" Text="Scan ID to Continue" VerticalAlignment="Top" FontSize="20" Width="193" TextAlignment="Center"/>
-        <TextBox TabIndex="0" x:Name="stud" HorizontalAlignment="Left" Height="23" Margin="278,252,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="193"/>
-        <Button IsDefault="True" x:Name="login" Content="Login" HorizontalAlignment="Left" Margin="490,252,0,0" VerticalAlignment="Top" Width="75" Height="23" Click="login_Click"/>
+        <TextBlock HorizontalAlignment="Left" Margin="288,101,0,0" TextWrapping="Wrap" Text="Login" VerticalAlignment="Top" FontSize="48"/>
+        <TextBlock HorizontalAlignment="Left" Margin="247,170,0,0" TextWrapping="Wrap" Text="Scan ID to Continue" VerticalAlignment="Top" FontSize="20" Width="193" TextAlignment="Center"/>
+        <TextBox TabIndex="0" x:Name="logidtxt" Height="22"   TextWrapping="Wrap" Width="194" Margin="0,55,10,0" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Center" />
+        <Button IsDefault="True" x:Name="login" Content="Login" HorizontalAlignment="Left" Margin="461,238,0,0" VerticalAlignment="Top" Width="60" Height="38" Click="login_Click"  />
+        <PasswordBox TabIndex="1"  x:Name="logpasstxt"  Height="22"  Width="194"  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,150,10,0"  FontSize="14"   />
+        <TextBlock HorizontalAlignment="Left" Margin="245,204,0,0" TextWrapping="Wrap" Text="ID" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="245,250,0,0" TextWrapping="Wrap" Text="Password" VerticalAlignment="Top"/>
 
     </Grid>
 </Page>

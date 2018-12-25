@@ -27,7 +27,7 @@ namespace LibraryWPF
         }
         private void loadgrid()
         {
-            WPFLibDatabaseEntities context = new WPFLibDatabaseEntities();
+            WPFLIBDATABASEEntities context = new WPFLIBDATABASEEntities();
             var data = from c in context.StudentAnswers
                        select c; /*new { c.SAno, c.Roll_No, c.Answer, c.Qno , c.Mark_Obtained };*/
             studentAnswerDataGrid.ItemsSource = data.ToList();

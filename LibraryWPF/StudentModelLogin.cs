@@ -17,6 +17,7 @@ namespace LibraryWPF
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public StudentModelLogin()
         {
+            this.Disciplines = new HashSet<DisciplineModel>();
             this.StudentAnswers = new HashSet<StudentAnswer>();
         }
     
@@ -24,9 +25,11 @@ namespace LibraryWPF
         public string Name { get; set; }
         public string Gender { get; set; }
         public Nullable<decimal> Total_Mark { get; set; }
+        public string Password { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DisciplineModel> Disciplines { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<StudentAnswer> StudentAnswers { get; set; }
-        public virtual Discipline Discipline { get; set; }
     }
 }

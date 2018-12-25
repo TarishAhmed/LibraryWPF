@@ -20,11 +20,12 @@ namespace LibraryWPF
     /// </summary>
     public partial class MainWindow : Window
     {
+        bool loginsignupswitch = false;
+        bool adminstudentswitch = false;
         public MainWindow()
         {
             InitializeComponent();
             Admin.Visibility = Visibility.Visible;
-            Student.Visibility = Visibility.Collapsed;
             frame1.Content = new StudentLogin();
 
         }
@@ -34,16 +35,44 @@ namespace LibraryWPF
 
         private void Admin_Click(object sender, RoutedEventArgs e)
         {
-            frame1.Content=new AdminLogin();
-            Admin.Visibility = Visibility.Collapsed;
-            Student.Visibility = Visibility.Visible;
+            
+            switch (adminstudentswitch)
+            {
+                case false:
+                    frame1.Content = new AdminLogin();
+                    adminstudentswitch = true;
+                    Admin.Content = "Student";
+                    break;
+                case true:
+                    frame1.Content = new StudentLogin();
+                    adminstudentswitch = false;
+                    Admin.Content = "Admin";
+                    break;
+            }
         }
 
         private void Student_Click(object sender, RoutedEventArgs e)
         {
-            frame1.Content = new StudentLogin();
-            Student.Visibility = Visibility.Collapsed;
-            Admin.Visibility = Visibility.Visible;
+        }
+
+        private void signupwindowbtn_Click(object sender, RoutedEventArgs e)
+        {
+
+            switch (loginsignupswitch)
+            {
+                case false:
+                    frame1.Content = new StudentSignup();
+                    loginsignupswitch = true;
+                    signupwindowbtn.Content = "Login";
+                    break;
+                case true:
+                    frame1.Content = new StudentLogin();
+                    loginsignupswitch = false;
+                    signupwindowbtn.Content = "Signup";
+                    break;
+            }
+            
+
         }
     }
 }

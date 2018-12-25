@@ -21,33 +21,61 @@ namespace LibraryWPF
     /// </summary>
     public partial class Discipline : Page
     {
-        WPFLibDatabaseEntities context = new WPFLibDatabaseEntities();
+        WPFLIBDATABASEEntities context = new WPFLIBDATABASEEntities();
         DispatcherTimer dispatcherTimer = new DispatcherTimer();
-        
-        public Discipline()
+        public bool check = false;
+        private void CheckBox_Checked(object sender, RoutedEventArgs e)
         {
-            
+            nameroll.Text = "Name";
+            check = true;
+            Render();
+        }
+
+        private void CheckBox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            nameroll.Text = "Roll No.";
+            check = false;
+            Render();
+        }
+        public void Render()
+        {
             var studlogi = from c in context.StudentModelLogins
-                       select new { c.Name,ID = c.Roll_No };
-            InitializeComponent();
+                           select new { c.Name, ID = c.Roll_No };
             studcombo.Focus();
             studcombo.ItemsSource = studlogi.ToList();
-            studcombo.DisplayMemberPath = "Name";
+            switch (check)
+            {
+                case true:
+                    studcombo.DisplayMemberPath = "Name";
+                    break;
+                case false:
+                    studcombo.DisplayMemberPath = "ID";
+                    break;
+            }
             studcombo.SelectedValuePath = "ID";
+        }
+        public Discipline()
+        {
+            InitializeComponent();
+            Render();
             dispatcherTimer.Tick += DispatcherTimer_Tick;
 
         }
 
         private void discsubmit_Click(object sender, RoutedEventArgs e)
         {
+            
             using (context)
             {
-                Discipline objdiscipline = new Discipline();
+                DisciplineModel objdiscipline = new DisciplineModel();
                 objdiscipline.Roll_No = studcombo.SelectedValue.ToString();
                 objdiscipline.Deduction = Convert.ToInt32(disciplinetxt.Text);
-                context.Disciplines.Add(objdiscipline);
+                objdiscipline.Remarks = remarktxt.Text;
+                objdiscipline.Date = DateTime.Now;
+                context.DisciplineModels.Add(objdiscipline);
                 context.SaveChanges();
-                disciplinetxt.Clear();              
+                disciplinetxt.Clear();
+                remarktxt.Clear();
             }
             status.Text = "Changes Updated!";
             dispatcherTimer.Interval = new TimeSpan(0, 0, 1);
@@ -58,5 +86,7 @@ namespace LibraryWPF
         {
             status.Visibility = Visibility.Collapsed;
         }
+
+        
     }
 }

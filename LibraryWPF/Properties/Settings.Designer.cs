@@ -26,8 +26,8 @@ namespace LibraryWPF.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\WPFLibDatabas" +
-            "e.mdf;Integrated Security=True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=(localdb)\\MyInstance;Initial Catalog=WPFLIBDATABASE;Integrated Securi" +
+            "ty=True")]
         public string WPFLibDatabaseConnectionString {
             get {
                 return ((string)(this["WPFLibDatabaseConnectionString"]));

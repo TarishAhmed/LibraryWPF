@@ -10,10 +10,10 @@
         <Grid.Background>
             <ImageBrush ImageSource="Icons/colored.jpg"/>
         </Grid.Background>
-        <Frame Margin="0,0,99,0" x:Name="frame1" NavigationUIVisibility="Hidden" TabIndex="0" IsTabStop="False" />
-        <StackPanel Margin="698,370,0,10">
-            <Button x:Name="Admin" Content="Admin"  Height="29" VerticalAlignment="Bottom" HorizontalAlignment="Center" MinWidth="60" MinHeight="30" Click="Admin_Click" />
-            <Button x:Name="Student" Content="Student" Click="Student_Click"  MinWidth="60" HorizontalAlignment="Center" MinHeight="30" VerticalAlignment="Bottom" />
-        </StackPanel>
+        <Frame Width="700" Height="421" Margin="0,0,94,0" x:Name="frame1" NavigationUIVisibility="Hidden" TabIndex="0" IsTabStop="False" />
+
+        <Button x:Name="Admin" Content="Admin"  Height="29" VerticalAlignment="Bottom" HorizontalAlignment="Left"    Click="Admin_Click" Background="#FFDDDDDD" BorderBrush="{x:Null}" Margin="705,0,0,21" Width="65" />
+        <Button x:Name="signupwindowbtn" Content="Signup" HorizontalAlignment="Left" VerticalAlignment="Top" Width="65" Click="signupwindowbtn_Click" Margin="705,40,0,0" BorderBrush="{x:Null}"  Height="40"/>
+
     </Grid>
 </Window>

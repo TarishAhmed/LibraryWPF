@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="WPFLibDatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="WPFLIBDATABASEModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="AdminLogin">
           <Key>
             <PropertyRef Name="Id" />
@@ -15,10 +15,13 @@
         </EntityType>
         <EntityType Name="Discipline">
           <Key>
-            <PropertyRef Name="Roll_No" />
+            <PropertyRef Name="Index" />
           </Key>
+          <Property Name="Index" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Roll_No" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Deduction" Type="numeric" Precision="5" Scale="0" />
+          <Property Name="Remarks" Type="nvarchar(max)" />
+          <Property Name="Date" Type="datetime2" Precision="7" />
         </EntityType>
         <EntityType Name="Question">
           <Key>
@@ -35,7 +38,7 @@
             <PropertyRef Name="SAno" />
           </Key>
           <Property Name="SAno" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Roll_No" Type="nvarchar" MaxLength="50" />
+          <Property Name="Roll_No" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Answer" Type="nvarchar" MaxLength="500" />
           <Property Name="Qno" Type="int" />
           <Property Name="Mark_Obtained" Type="numeric" Precision="3" Scale="1" />
@@ -45,12 +48,13 @@
             <PropertyRef Name="Roll_No" />
           </Key>
           <Property Name="Roll_No" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="15" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" />
           <Property Name="Gender" Type="nvarchar" MaxLength="10" />
           <Property Name="Total_Mark" Type="numeric" Precision="4" Scale="2" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'C:\USERS\TARIS\SOURCE\REPOS\LIBRARYWPF\LIBRARYWPF\WPFLIBDATABASE.MDF.dbo.View_DisciplinedMarks' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'WPFLIBDATABASE.dbo.View_DisciplinedMarks' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="View_DisciplinedMarks">
           <Key>
             <PropertyRef Name="Roll_No" />
@@ -59,7 +63,7 @@ warning 6002: The table/view 'C:\USERS\TARIS\SOURCE\REPOS\LIBRARYWPF\LIBRARYWPF\
           <Property Name="Deduction" Type="numeric" Precision="38" Scale="0" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'C:\USERS\TARIS\SOURCE\REPOS\LIBRARYWPF\LIBRARYWPF\WPFLIBDATABASE.MDF.dbo.View_TotalMarks' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'WPFLIBDATABASE.dbo.View_TotalMarks' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="View_TotalMarks">
           <Key>
             <PropertyRef Name="Roll_No" />
@@ -69,7 +73,7 @@ warning 6002: The table/view 'C:\USERS\TARIS\SOURCE\REPOS\LIBRARYWPF\LIBRARYWPF\
         </EntityType>
         <Association Name="FK_Discipline_StudentLogin">
           <End Role="StudentLogin" Type="Self.StudentLogin" Multiplicity="1" />
-          <End Role="Discipline" Type="Self.Discipline" Multiplicity="0..1" />
+          <End Role="Discipline" Type="Self.Discipline" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="StudentLogin">
               <PropertyRef Name="Roll_No" />
@@ -92,7 +96,7 @@ warning 6002: The table/view 'C:\USERS\TARIS\SOURCE\REPOS\LIBRARYWPF\LIBRARYWPF\
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_StudentAnswer_StudentLogin">
-          <End Role="StudentLogin" Type="Self.StudentLogin" Multiplicity="0..1" />
+          <End Role="StudentLogin" Type="Self.StudentLogin" Multiplicity="1" />
           <End Role="StudentAnswer" Type="Self.StudentAnswer" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="StudentLogin">
@@ -103,7 +107,7 @@ warning 6002: The table/view 'C:\USERS\TARIS\SOURCE\REPOS\LIBRARYWPF\LIBRARYWPF\
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="WPFLibDatabaseModelStoreContainer">
+        <EntityContainer Name="WPFLIBDATABASEModelStoreContainer">
           <EntitySet Name="AdminLogin" EntityType="Self.AdminLogin" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Discipline" EntityType="Self.Discipline" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Question" EntityType="Self.Question" Schema="dbo" store:Type="Tables" />
@@ -137,7 +141,7 @@ warning 6002: The table/view 'C:\USERS\TARIS\SOURCE\REPOS\LIBRARYWPF\LIBRARYWPF\
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="WPFLibDatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="WPFLIBDATABASEModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="AdminLogin">
           <Key>
             <PropertyRef Name="Id" />
@@ -146,27 +150,17 @@ warning 6002: The table/view 'C:\USERS\TARIS\SOURCE\REPOS\LIBRARYWPF\LIBRARYWPF\
           <Property Name="AdminID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
-        <EntityContainer Name="WPFLibDatabaseEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="AdminLogins" EntityType="Self.AdminLogin" />
-          <EntitySet Name="Questions" EntityType="WPFLibDatabaseModel.Question" />
-          <EntitySet Name="StudentAnswers" EntityType="WPFLibDatabaseModel.StudentAnswer" />
-          <AssociationSet Name="FK_StudentAnswer_Question" Association="WPFLibDatabaseModel.FK_StudentAnswer_Question">
-            <End Role="Question" EntitySet="Questions" />
-            <End Role="StudentAnswer" EntitySet="StudentAnswers" />
-          </AssociationSet>
-          <EntitySet Name="StudentModelLogins" EntityType="WPFLibDatabaseModel.StudentModelLogin" />
-          <AssociationSet Name="FK_StudentAnswer_StudentLogin" Association="WPFLibDatabaseModel.FK_StudentAnswer_StudentLogin">
-            <End Role="StudentLogin" EntitySet="StudentModelLogins" />
-            <End Role="StudentAnswer" EntitySet="StudentAnswers" />
-          </AssociationSet>
-          <EntitySet Name="View_TotalMarks" EntityType="WPFLibDatabaseModel.View_TotalMarks" />
-          <EntitySet Name="Disciplines" EntityType="WPFLibDatabaseModel.Discipline" />
-          <EntitySet Name="View_DisciplinedMarks" EntityType="WPFLibDatabaseModel.View_DisciplinedMarks" />
-          <AssociationSet Name="FK_Discipline_StudentLogin" Association="WPFLibDatabaseModel.FK_Discipline_StudentLogin">
-            <End Role="StudentModelLogin" EntitySet="StudentModelLogins" />
-            <End Role="Discipline" EntitySet="Disciplines" />
-          </AssociationSet>
-        </EntityContainer>
+        <EntityType Name="DisciplineModel">
+          <Key>
+            <PropertyRef Name="Index" />
+          </Key>
+          <Property Name="Roll_No" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Deduction" Type="Decimal" Precision="5" Scale="0" />
+          <Property Name="Index" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="StudentLogin" Relationship="Self.FK_Discipline_StudentLogin" FromRole="Discipline" ToRole="StudentLogin" />
+          <Property Name="Remarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="DateTime" Precision="7" />
+        </EntityType>
         <EntityType Name="Question">
           <Key>
             <PropertyRef Name="Qno" />
@@ -175,24 +169,62 @@ warning 6002: The table/view 'C:\USERS\TARIS\SOURCE\REPOS\LIBRARYWPF\LIBRARYWPF\
           <Property Name="Question1" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Mark_Available" Type="Decimal" Precision="3" Scale="1" Nullable="false" />
           <Property Name="Picture" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <Property Name="PostDate" Type="DateTime" Precision="7" Nullable="false" />
-          <NavigationProperty Name="StudentAnswers" Relationship="WPFLibDatabaseModel.FK_StudentAnswer_Question" FromRole="Question" ToRole="StudentAnswer" />
+          <Property Name="PostDate" Type="DateTime" Nullable="false" Precision="7" />
+          <NavigationProperty Name="StudentAnswers" Relationship="Self.FK_StudentAnswer_Question" FromRole="Question" ToRole="StudentAnswer" />
         </EntityType>
         <EntityType Name="StudentAnswer">
           <Key>
             <PropertyRef Name="SAno" />
           </Key>
           <Property Name="SAno" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Roll_No" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Roll_No" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Answer" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="Qno" Type="Int32" />
           <Property Name="Mark_Obtained" Type="Decimal" Precision="3" Scale="1" />
-          <NavigationProperty Name="Question" Relationship="WPFLibDatabaseModel.FK_StudentAnswer_Question" FromRole="StudentAnswer" ToRole="Question" />
-          <NavigationProperty Name="StudentLogin" Relationship="WPFLibDatabaseModel.FK_StudentAnswer_StudentLogin" FromRole="StudentAnswer" ToRole="StudentLogin" />
+          <NavigationProperty Name="Question" Relationship="Self.FK_StudentAnswer_Question" FromRole="StudentAnswer" ToRole="Question" />
+          <NavigationProperty Name="StudentLogin" Relationship="Self.FK_StudentAnswer_StudentLogin" FromRole="StudentAnswer" ToRole="StudentLogin" />
         </EntityType>
+        <EntityType Name="StudentModelLogin">
+          <Key>
+            <PropertyRef Name="Roll_No" />
+          </Key>
+          <Property Name="Roll_No" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Gender" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Total_Mark" Type="Decimal" Precision="4" Scale="2" />
+          <NavigationProperty Name="Disciplines" Relationship="Self.FK_Discipline_StudentLogin" FromRole="StudentLogin" ToRole="Discipline" />
+          <NavigationProperty Name="StudentAnswers" Relationship="Self.FK_StudentAnswer_StudentLogin" FromRole="StudentLogin" ToRole="StudentAnswer" />
+          <Property Name="Password" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="View_DisciplinedMarks">
+          <Key>
+            <PropertyRef Name="Roll_No" />
+          </Key>
+          <Property Name="Roll_No" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Deduction" Type="Decimal" Precision="38" Scale="0" />
+        </EntityType>
+        <EntityType Name="View_TotalMarks">
+          <Key>
+            <PropertyRef Name="Roll_No" />
+          </Key>
+          <Property Name="Roll_No" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TotalMark" Type="Decimal" Precision="38" Scale="1" />
+        </EntityType>
+        <Association Name="FK_Discipline_StudentLogin">
+          <End Role="StudentLogin" Type="WPFLIBDATABASEModel.StudentModelLogin" Multiplicity="1" />
+          <End Role="Discipline" Type="WPFLIBDATABASEModel.DisciplineModel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StudentLogin">
+              <PropertyRef Name="Roll_No" />
+            </Principal>
+            <Dependent Role="Discipline">
+              <PropertyRef Name="Roll_No" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_StudentAnswer_Question">
-          <End Type="WPFLibDatabaseModel.Question" Role="Question" Multiplicity="0..1" />
-          <End Type="WPFLibDatabaseModel.StudentAnswer" Role="StudentAnswer" Multiplicity="*" />
+          <End Role="Question" Type="Self.Question" Multiplicity="0..1" />
+          <End Role="StudentAnswer" Type="Self.StudentAnswer" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Question">
               <PropertyRef Name="Qno" />
@@ -202,20 +234,9 @@ warning 6002: The table/view 'C:\USERS\TARIS\SOURCE\REPOS\LIBRARYWPF\LIBRARYWPF\
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="StudentModelLogin">
-          <Key>
-            <PropertyRef Name="Roll_No" />
-          </Key>
-          <Property Name="Roll_No" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Gender" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="Total_Mark" Type="Decimal" Precision="4" Scale="2" />
-          <NavigationProperty Name="StudentAnswers" Relationship="WPFLibDatabaseModel.FK_StudentAnswer_StudentLogin" FromRole="StudentLogin" ToRole="StudentAnswer" />
-          <NavigationProperty Name="Discipline" Relationship="WPFLibDatabaseModel.FK_Discipline_StudentLogin" FromRole="StudentModelLogin" ToRole="Discipline" />
-        </EntityType>
         <Association Name="FK_StudentAnswer_StudentLogin">
-          <End Type="WPFLibDatabaseModel.StudentModelLogin" Role="StudentLogin" Multiplicity="0..1" />
-          <End Type="WPFLibDatabaseModel.StudentAnswer" Role="StudentAnswer" Multiplicity="*" />
+          <End Role="StudentLogin" Type="WPFLIBDATABASEModel.StudentModelLogin" Multiplicity="1" />
+          <End Role="StudentAnswer" Type="Self.StudentAnswer" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="StudentLogin">
               <PropertyRef Name="Roll_No" />
@@ -225,48 +246,35 @@ warning 6002: The table/view 'C:\USERS\TARIS\SOURCE\REPOS\LIBRARYWPF\LIBRARYWPF\
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="View_TotalMarks">
-          <Key>
-            <PropertyRef Name="Roll_No" />
-          </Key>
-          <Property Name="Roll_No" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="TotalMark" Type="Decimal" Precision="38" Scale="1" />
-        </EntityType>
-        <EntityType Name="Discipline">
-          <Key>
-            <PropertyRef Name="Roll_No" />
-          </Key>
-          <Property Name="Roll_No" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Deduction" Type="Decimal" Precision="5" Scale="0" />
-          <NavigationProperty Name="StudentLogin" Relationship="WPFLibDatabaseModel.FK_Discipline_StudentLogin" FromRole="Discipline" ToRole="StudentModelLogin" />
-        </EntityType>
-        <EntityType Name="View_DisciplinedMarks">
-          <Key>
-            <PropertyRef Name="Roll_No" />
-          </Key>
-          <Property Name="Roll_No" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Deduction" Type="Decimal" Precision="38" Scale="0" />
-        </EntityType>
-        <Association Name="FK_Discipline_StudentLogin">
-          <End Type="WPFLibDatabaseModel.StudentModelLogin" Role="StudentModelLogin" Multiplicity="1" />
-          <End Type="WPFLibDatabaseModel.Discipline" Role="Discipline" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="StudentModelLogin">
-              <PropertyRef Name="Roll_No" />
-            </Principal>
-            <Dependent Role="Discipline">
-              <PropertyRef Name="Roll_No" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
+        <EntityContainer Name="WPFLIBDATABASEEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AdminLogins" EntityType="Self.AdminLogin" />
+          <EntitySet Name="DisciplineModels" EntityType="WPFLIBDATABASEModel.DisciplineModel" />
+          <EntitySet Name="Questions" EntityType="Self.Question" />
+          <EntitySet Name="StudentAnswers" EntityType="Self.StudentAnswer" />
+          <EntitySet Name="StudentModelLogins" EntityType="WPFLIBDATABASEModel.StudentModelLogin" />
+          <EntitySet Name="View_DisciplinedMarks" EntityType="Self.View_DisciplinedMarks" />
+          <EntitySet Name="View_TotalMarks" EntityType="Self.View_TotalMarks" />
+          <AssociationSet Name="FK_Discipline_StudentLogin" Association="Self.FK_Discipline_StudentLogin">
+            <End Role="StudentLogin" EntitySet="StudentModelLogins" />
+            <End Role="Discipline" EntitySet="DisciplineModels" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StudentAnswer_Question" Association="Self.FK_StudentAnswer_Question">
+            <End Role="Question" EntitySet="Questions" />
+            <End Role="StudentAnswer" EntitySet="StudentAnswers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StudentAnswer_StudentLogin" Association="Self.FK_StudentAnswer_StudentLogin">
+            <End Role="StudentLogin" EntitySet="StudentModelLogins" />
+            <End Role="StudentAnswer" EntitySet="StudentAnswers" />
+          </AssociationSet>
+        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="WPFLibDatabaseModelStoreContainer" CdmEntityContainer="WPFLibDatabaseEntities">
+        <EntityContainerMapping StorageEntityContainer="WPFLIBDATABASEModelStoreContainer" CdmEntityContainer="WPFLIBDATABASEEntities">
           <EntitySetMapping Name="AdminLogins">
-            <EntityTypeMapping TypeName="WPFLibDatabaseModel.AdminLogin">
+            <EntityTypeMapping TypeName="WPFLIBDATABASEModel.AdminLogin">
               <MappingFragment StoreEntitySet="AdminLogin">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="AdminID" ColumnName="AdminID" />
@@ -274,59 +282,63 @@ warning 6002: The table/view 'C:\USERS\TARIS\SOURCE\REPOS\LIBRARYWPF\LIBRARYWPF\
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="DisciplineModels">
+            <EntityTypeMapping TypeName="WPFLIBDATABASEModel.DisciplineModel">
+              <MappingFragment StoreEntitySet="Discipline">
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="Roll_No" ColumnName="Roll_No" />
+                <ScalarProperty Name="Deduction" ColumnName="Deduction" />
+                <ScalarProperty Name="Index" ColumnName="Index" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Questions">
-            <EntityTypeMapping TypeName="WPFLibDatabaseModel.Question">
+            <EntityTypeMapping TypeName="WPFLIBDATABASEModel.Question">
               <MappingFragment StoreEntitySet="Question">
-                <ScalarProperty Name="PostDate" ColumnName="PostDate" />
-                <ScalarProperty Name="Picture" ColumnName="Picture" />
-                <ScalarProperty Name="Mark_Available" ColumnName="Mark_Available" />
-                <ScalarProperty Name="Question1" ColumnName="Question" />
                 <ScalarProperty Name="Qno" ColumnName="Qno" />
+                <ScalarProperty Name="Question1" ColumnName="Question" />
+                <ScalarProperty Name="Mark_Available" ColumnName="Mark_Available" />
+                <ScalarProperty Name="Picture" ColumnName="Picture" />
+                <ScalarProperty Name="PostDate" ColumnName="PostDate" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="StudentAnswers">
-            <EntityTypeMapping TypeName="WPFLibDatabaseModel.StudentAnswer">
+            <EntityTypeMapping TypeName="WPFLIBDATABASEModel.StudentAnswer">
               <MappingFragment StoreEntitySet="StudentAnswer">
-                <ScalarProperty Name="Mark_Obtained" ColumnName="Mark_Obtained" />
-                <ScalarProperty Name="Qno" ColumnName="Qno" />
-                <ScalarProperty Name="Answer" ColumnName="Answer" />
-                <ScalarProperty Name="Roll_No" ColumnName="Roll_No" />
                 <ScalarProperty Name="SAno" ColumnName="SAno" />
+                <ScalarProperty Name="Roll_No" ColumnName="Roll_No" />
+                <ScalarProperty Name="Answer" ColumnName="Answer" />
+                <ScalarProperty Name="Qno" ColumnName="Qno" />
+                <ScalarProperty Name="Mark_Obtained" ColumnName="Mark_Obtained" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="StudentModelLogins">
-            <EntityTypeMapping TypeName="WPFLibDatabaseModel.StudentModelLogin">
+            <EntityTypeMapping TypeName="WPFLIBDATABASEModel.StudentModelLogin">
               <MappingFragment StoreEntitySet="StudentLogin">
-                <ScalarProperty Name="Total_Mark" ColumnName="Total_Mark" />
-                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Roll_No" ColumnName="Roll_No" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Roll_No" ColumnName="Roll_No" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="View_TotalMarks">
-            <EntityTypeMapping TypeName="WPFLibDatabaseModel.View_TotalMarks">
-              <MappingFragment StoreEntitySet="View_TotalMarks">
-                <ScalarProperty Name="TotalMark" ColumnName="TotalMark" />
-                <ScalarProperty Name="Roll_No" ColumnName="Roll_No" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Disciplines">
-            <EntityTypeMapping TypeName="WPFLibDatabaseModel.Discipline">
-              <MappingFragment StoreEntitySet="Discipline">
-                <ScalarProperty Name="Deduction" ColumnName="Deduction" />
-                <ScalarProperty Name="Roll_No" ColumnName="Roll_No" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Total_Mark" ColumnName="Total_Mark" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="View_DisciplinedMarks">
-            <EntityTypeMapping TypeName="WPFLibDatabaseModel.View_DisciplinedMarks">
+            <EntityTypeMapping TypeName="WPFLIBDATABASEModel.View_DisciplinedMarks">
               <MappingFragment StoreEntitySet="View_DisciplinedMarks">
-                <ScalarProperty Name="Deduction" ColumnName="Deduction" />
                 <ScalarProperty Name="Roll_No" ColumnName="Roll_No" />
+                <ScalarProperty Name="Deduction" ColumnName="Deduction" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="View_TotalMarks">
+            <EntityTypeMapping TypeName="WPFLIBDATABASEModel.View_TotalMarks">
+              <MappingFragment StoreEntitySet="View_TotalMarks">
+                <ScalarProperty Name="Roll_No" ColumnName="Roll_No" />
+                <ScalarProperty Name="TotalMark" ColumnName="TotalMark" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

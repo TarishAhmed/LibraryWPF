@@ -21,7 +21,7 @@ namespace LibraryWPF
     /// </summary>
     public partial class Ranking : Page
     {
-        WPFLibDatabaseEntities entities = new WPFLibDatabaseEntities();
+        WPFLIBDATABASEEntities entities = new WPFLIBDATABASEEntities();
         DispatcherTimer dispatcherTimer = new DispatcherTimer();
         public Ranking()
         {
@@ -43,7 +43,7 @@ namespace LibraryWPF
                        select new { c.Roll_No, c.Name ,c.Gender, c.Total_Mark }).Take(10);
 
             ContentDataGrid.ItemsSource = data.ToList();
-            status.Text = "Please update changes from misc before viewing!";
+            status.Text = "";
             dispatcherTimer.Interval = new TimeSpan(0, 0, 3);
             dispatcherTimer.Start();
         }

@@ -4,17 +4,17 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="c81a71bf408d44f6aa2aa5005ed7ada7" Name="Diagram1">
-        <EntityTypeShape EntityType="WPFLibDatabaseModel.AdminLogin" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="WPFLibDatabaseModel.Question" Width="1.5" PointX="8" PointY="4.25" />
-        <EntityTypeShape EntityType="WPFLibDatabaseModel.StudentAnswer" Width="1.5" PointX="5.625" PointY="0.75" />
-        <AssociationConnector Association="WPFLibDatabaseModel.FK_StudentAnswer_Question" />
-        <EntityTypeShape EntityType="WPFLibDatabaseModel.StudentModelLogin" Width="1.5" PointX="3.375" PointY="1" />
-        <AssociationConnector Association="WPFLibDatabaseModel.FK_StudentAnswer_StudentLogin" />
-        <EntityTypeShape EntityType="WPFLibDatabaseModel.View_TotalMarks" Width="1.5" PointX="5.375" PointY="4.75" />
-        <EntityTypeShape EntityType="WPFLibDatabaseModel.Discipline" Width="1.5" PointX="3.5" PointY="4.125" />
-        <EntityTypeShape EntityType="WPFLibDatabaseModel.View_DisciplinedMarks" Width="1.5" PointX="0.75" PointY="3.75" />
-        <AssociationConnector Association="WPFLibDatabaseModel.FK_Discipline_StudentLogin" />
+      <Diagram DiagramId="913353aa52c04ee9aa2788b4f49b17f8" Name="Diagram1">
+        <EntityTypeShape EntityType="WPFLIBDATABASEModel.AdminLogin" Width="1.5" PointX="7" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="WPFLIBDATABASEModel.DisciplineModel" Width="1.5" PointX="7.625" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WPFLIBDATABASEModel.Question" Width="1.5" PointX="3" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="WPFLIBDATABASEModel.StudentAnswer" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WPFLIBDATABASEModel.StudentModelLogin" Width="1.5" PointX="5.5" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WPFLIBDATABASEModel.View_DisciplinedMarks" Width="1.5" PointX="8" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="WPFLIBDATABASEModel.View_TotalMarks" Width="1.5" PointX="5.5" PointY="6.125" IsExpanded="true" />
+        <AssociationConnector Association="WPFLIBDATABASEModel.FK_Discipline_StudentLogin" ManuallyRouted="false" />
+        <AssociationConnector Association="WPFLIBDATABASEModel.FK_StudentAnswer_Question" ManuallyRouted="false" />
+        <AssociationConnector Association="WPFLIBDATABASEModel.FK_StudentAnswer_StudentLogin" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

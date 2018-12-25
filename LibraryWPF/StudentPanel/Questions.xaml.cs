@@ -25,7 +25,7 @@ namespace LibraryWPF
     
     public partial class Questions : Page
     {
-        WPFLibDatabaseEntities dbq = new WPFLibDatabaseEntities();
+        WPFLIBDATABASEEntities dbq = new WPFLIBDATABASEEntities();
         public ObservableCollection<Question> Qsds;
         public void Render() //made a public function for creating a collection of table "Question" for better UI performance
         {
@@ -117,16 +117,23 @@ namespace LibraryWPF
 
         private void submitbtn_Click(object sender, RoutedEventArgs e)
         {
-            StudentAnswer sa = new StudentAnswer();
-            sa.Roll_No = Roll;
-            sa.Qno = Convert.ToInt32(qnolist.SelectedValue.ToString());
-            sa.Answer = answertxt.Text;
-            dbq.StudentAnswers.Add(sa);
-            dbq.SaveChanges();
-            answertxt.Clear();
-            qntxt.Clear();
-            img.Source = null;
-            Render();
+            try
+            {
+                StudentAnswer sa = new StudentAnswer();
+                sa.Roll_No = Roll;
+                sa.Qno = Convert.ToInt32(qnolist.SelectedValue.ToString());
+                sa.Answer = answertxt.Text;
+                dbq.StudentAnswers.Add(sa);
+                dbq.SaveChanges();
+                answertxt.Clear();
+                qntxt.Clear();
+                img.Source = null;
+                Render();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Invalid Case","Error");
+            }
         }
     }
 }

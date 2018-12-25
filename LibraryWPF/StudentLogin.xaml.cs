@@ -26,29 +26,67 @@ namespace LibraryWPF
         public StudentLogin()
         {
             InitializeComponent();
-            stud.Focus();
+            logidtxt.Focus();
+
         }
 
         private void login_Click(object sender, RoutedEventArgs e)
         {
-            WPFLibDatabaseEntities dbs = new WPFLibDatabaseEntities();
-            if (stud.Text != string.Empty)
-            {
-                var studs = dbs.StudentModelLogins.FirstOrDefault(a=>a.Roll_No.Equals(stud.Text));
-                if (studs != null)
+            if(logidtxt.Text!="" && logpasstxt.Password!="")
+            { 
+                try
                 {
-                    roll=studs.Roll_No;
-                    nam = studs.Name;
-                    StudentPanel stpa = new StudentPanel(roll,nam);
-                    Application.Current.Windows[0].Close();
-                    stpa.ShowDialog();
-                    
+                    WPFLIBDATABASEEntities dbs = new WPFLIBDATABASEEntities();
+                    if (logidtxt.Text != string.Empty || logpasstxt.Password != string.Empty)
+                    {
+                        var studs = dbs.StudentModelLogins.FirstOrDefault(a => a.Roll_No.Equals(logidtxt.Text));
+                        if (studs != null)
+                        {
+                            if(studs.Password.Equals(logpasstxt.Password))
+                            { 
+                                roll = studs.Roll_No;
+                                nam = studs.Name;
+                                StudentPanel stpa = new StudentPanel(roll, nam);
+                                Application.Current.Windows[0].Close();
+                                stpa.ShowDialog();
+                            }
+                            else
+                            {
+                                MessageBox.Show("Password Incorrect!");
+                            }
+
+                        }
+                        else
+                        {
+                            MessageBox.Show("Account not found.");
+                        }
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("Fill both fields.");
+                    }
                 }
-                else
+                catch (Exception ex)
                 {
-                    MessageBox.Show("Invalid Roll No.");
+                    MessageBox.Show(""+ex.Message);
                 }
+
             }
+            else
+            {
+                MessageBox.Show("Don't leave a blank field.");
+            }
+        }
+
+        private void GSignupbtn_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void GSigninbtn_Click(object sender, RoutedEventArgs e)
+        {
+            
         }
     }
 }

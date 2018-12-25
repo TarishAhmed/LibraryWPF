@@ -56,8 +56,8 @@ namespace LibraryWPF
         {
             try
             {
-                        //Using ADO.Net Entities for insertion operation
-                        WPFLibDatabaseEntities entities = new WPFLibDatabaseEntities();
+                //Using ADO.Net Entities for insertion operation
+                WPFLIBDATABASEEntities entities = new WPFLIBDATABASEEntities();
                         Question question = new Question();
                         question.Question1 = qstntxt.Text;
                         question.PostDate = expdt.SelectedDate.Value;

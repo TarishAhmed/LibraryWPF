@@ -23,7 +23,7 @@ namespace LibraryWPF
     public partial class Correction : Page
     {
         public ObservableCollection<StudentAnswer> csds;
-        WPFLibDatabaseEntities dbc = new WPFLibDatabaseEntities();
+        WPFLIBDATABASEEntities dbc = new WPFLIBDATABASEEntities();
         public void Render()
         {
 

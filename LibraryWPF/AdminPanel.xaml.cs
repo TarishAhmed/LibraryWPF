@@ -21,7 +21,9 @@ namespace LibraryWPF
     public partial class AdminPanel : Window
     {
         public int status=0;
-        WPFLibDatabaseEntities entities = new WPFLibDatabaseEntities();
+        WPFLIBDATABASEEntities entities = new WPFLIBDATABASEEntities();
+        
+        
         public AdminPanel()
         {
             InitializeComponent();
